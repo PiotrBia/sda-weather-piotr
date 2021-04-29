@@ -6,6 +6,6 @@
         <property name="connection.username"></property>
         <property name="connection.password"></property>
         <property name="hbm2ddl.auto">update</property>
-        <mapping class="com.sda.weather.LocationsController"/>
+        <mapping class="com.sda.weather.LocationController"/>
     </session-factory>
 </hibernate-configuration>

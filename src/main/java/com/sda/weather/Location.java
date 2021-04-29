@@ -14,13 +14,15 @@ public class Location {
     String city;
     String region;
     String country;
-    int longitude;
-    int altitude;
+    double longitude;
+    double altitude;
+    char longitudeDirection;
+    char altitudeDirection;
 
     public Location() {
     }
 
-    public Location(Long id, String city, String region, String country, int longitude, int altitude) {
+    public Location(Long id, String city, String region, String country, double longitude, double altitude) {
         this.id = id;
         this.city = city;
         this.region = region;
@@ -61,19 +63,17 @@ public class Location {
         this.country = country;
     }
 
-    public int getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(int longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public int getAltitude() {
-        return altitude;
-    }
+    public double getAltitude() { return altitude; }
 
-    public void setAltitude(int altitude) {
+    public void setAltitude(double altitude) {
         this.altitude = altitude;
     }
 }
