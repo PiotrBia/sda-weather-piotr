@@ -2,6 +2,12 @@ package com.sda.weather;
 
 public class LocationService {
 
+    private LocationRepository locationRepository;
+
+    public LocationService(LocationRepository locationRepository) {
+        this.locationRepository = locationRepository;
+    }
+
     public Location createNewLocation(Long id, String city, String region, String country, double longitude, double altitude) {
 
         if (city.length() < 1) {
@@ -22,7 +28,9 @@ public class LocationService {
 
         Location newLocation = new Location(null, city, region, country, longitude, altitude);
 
-        return null;
+        Location addedLocation = locationRepository.addLocation(newLocation);
+
+        return addedLocation;
     }
 
 }

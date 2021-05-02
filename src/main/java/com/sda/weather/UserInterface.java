@@ -5,16 +5,17 @@ import java.util.Scanner;
 public class UserInterface {
 
     public void runApplication() {
-        System.out.println("Witaj w SDA Weather");
+
+        System.out.println("Welcome to SDA Weather");
 
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Co chcesz zrobić?");
-            System.out.println("1. dodaj lokację");
-            System.out.println("2. pokaż zapisane lokacje");
-            System.out.println("3. ściągnij dane pogodowe");
-            System.out.println("0. zamknij aplikację");
+            System.out.println("Choose option:");
+            System.out.println("1. Add new location");
+            System.out.println("2. Show saved locations");
+            System.out.println("3. Download weather data");
+            System.out.println("0. Close application");
 
             int userChoice = scanner.nextInt();
 
@@ -29,21 +30,40 @@ public class UserInterface {
                     downloadWeatherData();
                     break;
                 case 0:
-                    System.out.println("zamykam aplikację");
+                    System.out.println("Goodbye");
                     return;
             }
         }
     }
 
     private void downloadWeatherData() {
-        System.out.println("funkcja jescze nie dostępna");
+        System.out.println("Not available yet");
     }
 
     private void showLocations() {
-        System.out.println("funkcja jescze nie dostępna");
+        System.out.println("Not available yet");
+    }
+
+    private LocationController locationController;
+
+    public UserInterface(LocationController locationController) {
+        this.locationController = locationController;
     }
 
     private void newLocation() {
-        System.out.println("funkcja jescze nie dostępna");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter new location details.\nCity name:");
+        String city = scanner.nextLine();
+        System.out.println("Region:");
+        String region = scanner.nextLine();
+        System.out.println("Country:");
+        String country = scanner.nextLine();
+        System.out.println("Longitude:");
+        Double longitude = scanner.nextDouble();
+        System.out.println("Latitude:");
+        Double latitude = scanner.nextDouble();
+        String confirmation = locationController.addNewLocation(city, longitude, latitude, region, country);
+
+        System.out.println("You have successfully added a new location"+confirmation);
     }
 }

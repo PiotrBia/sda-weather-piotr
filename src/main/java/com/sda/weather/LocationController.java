@@ -2,13 +2,15 @@ package com.sda.weather;
 
 public class LocationController {
 
-    private LocationController locationController;
+    private LocationService locationService;
 
-    public LocationController(LocationController locationController) {
-        this.locationController = locationController;
+    public LocationController(LocationService locationService) {
+        this.locationService = locationService;
     }
 
-    public String addNewLocation(String city, int longitude, int altitude, String region, String country) {
-        return null;
+    public String addNewLocation(String city, double longitude, double altitude, String region, String country) {
+        Location newLocation = locationService.createNewLocation(null, city, region, country, longitude, altitude);
+        return String.format("{\"id\": %s, \"city\": \"%s\", \"region\": \"%s\", \"country\": \"%s\", \"longitude\": \"%s\", \"altitude\": \"%s\"}",
+                newLocation.getId(), newLocation.getCity(), newLocation.getRegion(), newLocation.getCountry(), newLocation.getLongitude(), newLocation.getLatitude());
     }
 }
