@@ -1,8 +1,15 @@
 package com.sda.weather;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
+    private SessionFactory sessionFactory;
 
     public void runApplication() {
 
@@ -40,8 +47,17 @@ public class UserInterface {
         System.out.println("Not available yet");
     }
 
-    private void showLocations() {
-        System.out.println("Not available yet");
+    public void showLocations() {
+
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<Location> locationQuery = session.createQuery("SELECT allLocations FROM Location AS allLocations", Location.class);
+        List<Location> allLocations = locationQuery.getResultList();
+        allLocations.stream().map(Location::getCity).forEach(System.out::println);
+
+        transaction.commit();
+        session.close();
     }
 
     private LocationController locationController;
@@ -64,6 +80,6 @@ public class UserInterface {
         Double latitude = scanner.nextDouble();
         String confirmation = locationController.addNewLocation(city, longitude, latitude, region, country);
 
-        System.out.println("You have successfully added a new location"+confirmation);
+        System.out.println("You have successfully added a new location" + confirmation);
     }
 }

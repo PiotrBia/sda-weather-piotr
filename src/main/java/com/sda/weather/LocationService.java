@@ -1,5 +1,8 @@
 package com.sda.weather;
 
+import java.util.List;
+import java.util.Scanner;
+
 public class LocationService {
 
     private LocationRepository locationRepository;
