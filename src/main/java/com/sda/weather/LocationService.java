@@ -11,12 +11,12 @@ public class LocationService {
         this.locationRepository = locationRepository;
     }
 
-    public Location createNewLocation(Long id, String city, String region, String country, double longitude, double altitude) {
-
-        if (city.length() < 1) {
-            throw new RuntimeException("City name must have be at least 1 character long.");
+    public Location createNewLocation(Long id, String city, String region, String country, double longitude, double latitude) { // todo id is unnecessary
+        if (city.length() < 1) { // todo check if it is not null
+//            throw new RuntimeException("City name must have be at least 1 character long.");
+            return null;
         }
-        if (region.length() < 1) {
+        if (region.length() < 1) {  // todo region can be empty
             throw new RuntimeException("Region name must have be at least 1 character long.");
         }
         if (country.length() < 3) {
@@ -25,11 +25,14 @@ public class LocationService {
         if (longitude < -180 || longitude > 180) {
             throw new RuntimeException("Longitude must range from -180 to 180");
         }
-        if (altitude < 0 || altitude > 90) {
+        if (latitude < 0 || latitude > 90) { // todo -90 90
             throw new RuntimeException("Altitude must range from -90 to 90");
         }
 
-        Location newLocation = new Location(null, city, region, country, longitude, altitude);
+        Location newLocation = new Location(null, city, region, country, longitude, latitude);
+
+        // todo use a constructor without a region value
+        //  set a region if exists
 
         Location addedLocation = locationRepository.addLocation(newLocation);
 
@@ -39,5 +42,4 @@ public class LocationService {
     public Location showAllLocations(String city) {
         return locationRepository.showLocations(showAllLocations(city));
     }
-
 }

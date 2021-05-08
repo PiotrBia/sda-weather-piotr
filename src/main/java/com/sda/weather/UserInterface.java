@@ -1,18 +1,16 @@
 package com.sda.weather;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-
-import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
-    private SessionFactory sessionFactory;
+
+    private LocationController locationController;
+
+    public UserInterface(LocationController locationController) {
+        this.locationController = locationController;
+    }
 
     public void runApplication() {
-
         System.out.println("Welcome to SDA Weather");
 
         Scanner scanner = new Scanner(System.in);
@@ -48,14 +46,7 @@ public class UserInterface {
     }
 
     public void showLocations() {
-
-
-    }
-
-    private LocationController locationController;
-
-    public UserInterface(LocationController locationController) {
-        this.locationController = locationController;
+        System.out.println("Not available yet");
     }
 
     private void newLocation() {
