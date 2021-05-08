@@ -36,4 +36,8 @@ public class LocationService {
         return addedLocation;
     }
 
+    public Location showAllLocations(String city) {
+        return locationRepository.showLocations(showAllLocations(city));
+    }
+
 }

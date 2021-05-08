@@ -49,15 +49,7 @@ public class UserInterface {
 
     public void showLocations() {
 
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
 
-        Query<Location> locationQuery = session.createQuery("SELECT allLocations FROM Location AS allLocations", Location.class);
-        List<Location> allLocations = locationQuery.getResultList();
-        allLocations.stream().map(Location::getCity).forEach(System.out::println);
-
-        transaction.commit();
-        session.close();
     }
 
     private LocationController locationController;
